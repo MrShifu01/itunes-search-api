@@ -2,13 +2,13 @@ import '../../index.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { useState } from 'react'
 import { addResults } from '../../store/results'
-import { addMusic } from '../../store/music'
+import { addSoftware } from '../../store/software'
 import axios from 'axios'
 
-function MusicSearch() {
+function SoftwareSearch() {
     const [searchValue, setSearchValue] = useState("")
     const searchResults = useSelector((state) => state.results.results)
-    const music = useSelector((state) => state.music.musicArray)
+    const software = useSelector((state) => state.software.softwareArray)
     const media = useSelector((state) => state.media.media)
     const dispatch = useDispatch()
   
@@ -42,8 +42,8 @@ function MusicSearch() {
     const handleAddToFavourites = (e, id, track, artist) => {
       e.preventDefault()
   
-      for (let i = 0; i < music.length; i++) {
-        if (id === music[i].trackId) {
+      for (let i = 0; i < software.length; i++) {
+        if (id === software[i].trackId) {
           alert("Item is already in favourites")
           return
         }
@@ -54,7 +54,7 @@ function MusicSearch() {
         "trackName": track,
         "artistName": artist
       }
-      dispatch(addMusic(data))
+      dispatch(addSoftware(data))
     }
   return (
     <div>
@@ -87,11 +87,11 @@ function MusicSearch() {
           className='grid grid-cols-3 gap-5 justify-evenly search-results pb-3'
           key={result.trackId}
           >
-            <h1>
-              Track Name: {result.trackName}
+            <h1 >
+              Software Name: {result.trackName}
             </h1>
             <p>
-              Artist: {result.artistName}
+              Developer: {result.artistName}
             </p>
             <button 
             className='btn btn-xs'
@@ -107,4 +107,4 @@ function MusicSearch() {
   )
 }
 
-export default MusicSearch
+export default SoftwareSearch

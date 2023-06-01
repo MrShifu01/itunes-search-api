@@ -2,13 +2,13 @@ import '../../index.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { useState } from 'react'
 import { addResults } from '../../store/results'
-import { addMusic } from '../../store/music'
+import { addEbooks } from '../../store/ebooks'
 import axios from 'axios'
 
-function MusicSearch() {
+function EbooksSearch() {
     const [searchValue, setSearchValue] = useState("")
     const searchResults = useSelector((state) => state.results.results)
-    const music = useSelector((state) => state.music.musicArray)
+    const ebooks = useSelector((state) => state.ebooks.ebooksArray)
     const media = useSelector((state) => state.media.media)
     const dispatch = useDispatch()
   
@@ -42,8 +42,8 @@ function MusicSearch() {
     const handleAddToFavourites = (e, id, track, artist) => {
       e.preventDefault()
   
-      for (let i = 0; i < music.length; i++) {
-        if (id === music[i].trackId) {
+      for (let i = 0; i < ebooks.length; i++) {
+        if (id === ebooks[i].trackId) {
           alert("Item is already in favourites")
           return
         }
@@ -54,7 +54,7 @@ function MusicSearch() {
         "trackName": track,
         "artistName": artist
       }
-      dispatch(addMusic(data))
+      dispatch(addEbooks(data))
     }
   return (
     <div>
@@ -87,11 +87,11 @@ function MusicSearch() {
           className='grid grid-cols-3 gap-5 justify-evenly search-results pb-3'
           key={result.trackId}
           >
-            <h1>
-              Track Name: {result.trackName}
+            <h1 >
+              Book Name: {result.trackName}
             </h1>
             <p>
-              Artist: {result.artistName}
+              Author: {result.artistName}
             </p>
             <button 
             className='btn btn-xs'
@@ -107,4 +107,4 @@ function MusicSearch() {
   )
 }
 
-export default MusicSearch
+export default EbooksSearch

@@ -8,6 +8,9 @@ import { useEffect} from 'react'
 import { resetResults } from '../store/results'
 import MusicVideosSearch from './search/MusicVideosSearch'
 import AudioBooksSearch from './search/AudioBooksSearch'
+import TvShowsSearch from './search/TvShowsSearch'
+import SoftwareSearch from './search/SoftwareSearch'
+import EbooksSearch from './search/EbooksSearch'
 
 function Search() {
   const media = useSelector((state) => state.media.media)
@@ -20,7 +23,7 @@ function Search() {
   return (
     <div>
 
-      <div className="tabs">
+      <div className="tabs justify-evenly">
         
         {/* ALL */}
         <a
@@ -86,24 +89,12 @@ function Search() {
         <a
         onClick={(e) => {
           e.preventDefault()
-          dispatch(changeMedia('audioBook'))
+          dispatch(changeMedia('audiobook'))
         }} 
         href='/' 
-        className={`tab tab-bordered ${media === 'audioBook' ? "tab-active" : ""}`}
+        className={`tab tab-bordered ${media === 'audiobook' ? "tab-active" : ""}`}
         >
           Audio Books
-        </a>
-        
-        {/* SHORT FILMS */}
-        <a
-        onClick={(e) => {
-          e.preventDefault()
-          dispatch(changeMedia('shortFilm'))
-        }} 
-        href='/' 
-        className={`tab tab-bordered ${media === 'shortFilm' ? "tab-active" : ""}`}
-        >
-          Short Films
         </a>
         
         {/* TV SHOWS*/}
@@ -149,7 +140,10 @@ function Search() {
       {media === "movie" && <MoviesSearch/>}
       {media === "podcast" && <PodcastsSearch/>}
       {media === "musicVideo" && <MusicVideosSearch/>}
-      {media === "audioBook" && <AudioBooksSearch/>}
+      {media === "audiobook" && <AudioBooksSearch/>}
+      {media === "tvShow" && <TvShowsSearch/>}
+      {media === "software" && <SoftwareSearch/>}
+      {media === "ebook" && <EbooksSearch/>}
     </div>
   )
 }

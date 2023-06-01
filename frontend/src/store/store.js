@@ -7,7 +7,6 @@ import musicvideosReducer from './musicvideos'
 import ebooksReducer from './ebooks'
 import audiobooksReducer from './audiobooks'
 import tvshowsReducer from './tvshows'
-import shortfilmsReducer from './shortfilms'
 import softwareReducer from './software'
 import mediaReducer from './media'
 
@@ -21,7 +20,6 @@ export default configureStore ({
         audiobooks: audiobooksReducer,
         ebooks: ebooksReducer,
         tvshows: tvshowsReducer,
-        shortfilms: shortfilmsReducer,
         software: softwareReducer,
         media: mediaReducer
     }

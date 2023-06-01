@@ -84,7 +84,7 @@ function PodcastsSearch() {
       <div className='search-results-container p-5'>
         {searchResults.map((result) => (
           <div
-          className='flex gap-3'
+          className='grid grid-cols-3 gap-5 justify-evenly search-results pb-3'
           key={result.trackId}
           >
             <h1 >
@@ -94,7 +94,7 @@ function PodcastsSearch() {
               Host: {result.artistName}
             </p>
             <button 
-            className='btn'
+            className='btn btn-xs'
             onClick={(e) => handleAddToFavourites(e, result.trackId, result.trackName, result.artistName)}
             >
               Add to Favourites
