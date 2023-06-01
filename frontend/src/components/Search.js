@@ -11,9 +11,11 @@ import AudioBooksSearch from './search/AudioBooksSearch'
 import TvShowsSearch from './search/TvShowsSearch'
 import SoftwareSearch from './search/SoftwareSearch'
 import EbooksSearch from './search/EbooksSearch'
+import AllSearch from './search/AllSearch'
 
 function Search() {
   const media = useSelector((state) => state.media.media)
+  
   const dispatch= useDispatch()
 
   useEffect(() => {
@@ -22,6 +24,8 @@ function Search() {
 
   return (
     <div>
+
+
 
       <div className="tabs justify-evenly">
         
@@ -136,6 +140,7 @@ function Search() {
       </div>
       
       {media === "home" && <div>Testing Home</div>}
+      {media === "all" && <AllSearch/>}
       {media === "music" && <MusicSearch/>}
       {media === "movie" && <MoviesSearch/>}
       {media === "podcast" && <PodcastsSearch/>}

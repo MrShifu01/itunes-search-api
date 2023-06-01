@@ -77,7 +77,7 @@ function MoviesSearch() {
           </form>
         </div>
       </div>
-      <div className='search-results-container p-5'>
+      <div className={`search-results-container p-5 ${searchResults.length > 0 ? '' : 'result-box'}`}>
         {searchResults.map((result) => (
           <div
           className='grid grid-cols-3 gap-5 justify-evenly search-results pb-3'

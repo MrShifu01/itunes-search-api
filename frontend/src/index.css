@@ -13,20 +13,38 @@ body {
   font-family: "Lobster";
   background-image: url("hero-background.png");
   background-size: cover;
-  background-position: center;
-  height: 100vh;
+  background-position: center top;
+  background-repeat: repeat-x;
+  min-height: 100vh;
 }
 
 .navbar__container {
   width: 100%;
+  background-color: white;
 }
 
 .navbar__content {
   width: 80%;
-  max-width: 1440px;
+  max-width: 1000px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
+  position: relative;
+}
+
+.sub-open {
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 0;
+}
+
+.sub-closed {
+  display: hidden;
+}
+
+.sub-list:hover {
+  opacity: .5;
 }
 
 .search-container {
@@ -35,7 +53,7 @@ body {
   margin: 0 auto;
   display: flex;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 20px;
 }
 
 .search-results-container {
@@ -49,6 +67,10 @@ body {
   box-shadow: 0 0 10px;
 }
 
+.result-box {
+  display: none;
+}
+
 .title {
   font-weight: 900;
 }
@@ -56,5 +78,6 @@ body {
 .tabs {
   width: 100%;
   max-width: 800px;
-  margin: 2rem auto;
+  margin: 0 auto;
+  margin-top: 2rem;
 }
