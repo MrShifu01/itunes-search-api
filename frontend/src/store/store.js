@@ -23,6 +23,6 @@ export default configureStore ({
         tvshows: tvshowsReducer,
         software: softwareReducer,
         page: pageReducer,
-        media: mediaReducer
+        media: mediaReducer,
     }
 })

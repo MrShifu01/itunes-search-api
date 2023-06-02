@@ -1,26 +1,54 @@
 import '../index.css'
 import { useDispatch, useSelector } from 'react-redux'
-import MusicSearch from './search/MusicSearch'
-import MoviesSearch from './search/MoviesSearch'
-import PodcastsSearch from './search/PodcastsSearch'
 import { changeMedia} from '../store/media'
 import { useEffect} from 'react'
 import { resetResults } from '../store/results'
-import MusicVideosSearch from './search/MusicVideosSearch'
-import AudioBooksSearch from './search/AudioBooksSearch'
-import TvShowsSearch from './search/TvShowsSearch'
-import SoftwareSearch from './search/SoftwareSearch'
-import EbooksSearch from './search/EbooksSearch'
-import AllSearch from './search/AllSearch'
+import MediaSearch from './MediaSearch'
+import AllSearch from './AllSearch'
+
+import { addTvShows } from '../store/tvshows'
+import { addMusic } from '../store/music'
+import { addMovies } from '../store/movies'
+import { addPodcasts } from '../store/podcasts'
+import { addMusicVideos } from '../store/musicvideos'
+import { addAudioBooks } from '../store/audiobooks'
+import { addSoftware } from '../store/software'
+import { addEbooks } from '../store/ebooks'
 
 function Search() {
   const media = useSelector((state) => state.media.media)
-  
   const dispatch= useDispatch()
 
   useEffect(() => {
     dispatch(resetResults())
   }, [media])
+
+  const handleAddTvShows = (data) => {
+    dispatch(addTvShows(data))
+  }
+  const handleAddMusic = (data) => {
+    dispatch(addMusic(data))
+  }
+  const handleAddMovies = (data) => {
+    dispatch(addMovies(data))
+  }
+  const handleAddPodcasts = (data) => {
+    dispatch(addPodcasts(data))
+  }
+  const handleAddMusicVideos = (data) => {
+    dispatch(addMusicVideos(data))
+  }
+  const handleAddSoftware = (data) => {
+    dispatch(addSoftware(data))
+  }
+  const handleAddAudioBooks = (data) => {
+    dispatch(addAudioBooks(data))
+  }
+  const handleAddEbooks = (data) => {
+    dispatch(addEbooks(data))
+  }
+
+
 
   return (
     <div>
@@ -139,16 +167,31 @@ function Search() {
 
       </div>
       
-      {media === "home" && <div>Testing Home</div>}
-      {media === "all" && <AllSearch/>}
-      {media === "music" && <MusicSearch/>}
-      {media === "movie" && <MoviesSearch/>}
-      {media === "podcast" && <PodcastsSearch/>}
-      {media === "musicVideo" && <MusicVideosSearch/>}
-      {media === "audiobook" && <AudioBooksSearch/>}
-      {media === "tvShow" && <TvShowsSearch/>}
-      {media === "software" && <SoftwareSearch/>}
-      {media === "ebook" && <EbooksSearch/>}
+      {media === "all" && <AllSearch />}
+      {media === "music" && (
+        <MediaSearch addMedia={handleAddMusic} mediaType="music" />
+      )}
+      {media === "movie" && (
+        <MediaSearch addMedia={handleAddMovies} mediaType="movies" />
+      )}
+      {media === "podcast" && (
+        <MediaSearch addMedia={handleAddPodcasts} mediaType="podcasts" />
+      )}
+      {media === "musicVideo" && (
+        <MediaSearch addMedia={handleAddMusicVideos} mediaType="musicvideos" />
+      )}
+      {media === "audiobook" && (
+        <MediaSearch addMedia={handleAddAudioBooks} mediaType="audiobooks" />
+      )}
+      {media === "tvShow" && (
+        <MediaSearch addMedia={handleAddTvShows} mediaType="tvshows" />
+      )}
+      {media === "software" && (
+        <MediaSearch addMedia={handleAddSoftware} mediaType="software" />
+      )}
+      {media === "ebook" && (
+        <MediaSearch addMedia={handleAddEbooks} mediaType="ebooks" />
+      )}
     </div>
   )
 }

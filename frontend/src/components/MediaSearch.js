@@ -1,16 +1,24 @@
-import '../../index.css'
+import '../index.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { useState } from 'react'
-import { addResults } from '../../store/results'
-import { addMusicVideos } from '../../store/musicvideos'
+import { addResults } from '../store/results'
 import axios from 'axios'
 
-function MusicVideosSearch() {
+// Selector function
+function getMediaArray(state, mediaType) {
+  return state[mediaType]?.[`${mediaType}Array`] || [];
+}
+
+
+function MediaSearch({mediaType, addMedia}) {
     const [searchValue, setSearchValue] = useState("")
     const [emptyResults, setEmptyResults] = useState(false)
     const [searched, setSearched] = useState(false)
     const searchResults = useSelector((state) => state.results.results)
-    const musicvideos = useSelector((state) => state.musicvideos.musicvideosArray)
+    
+    // Dynamic Selector
+    const currentMedia = useSelector((state) => getMediaArray(state, mediaType));
+    
     const media = useSelector((state) => state.media.media)
     const dispatch = useDispatch()
   
@@ -23,10 +31,10 @@ function MusicVideosSearch() {
   
       // Calling the function to remove non alpha/num characters
       const cleanSearchValue = removeNonAlphaNum(searchValue)
-      console.log(media)
       const response = await axios.get(`/api/?term=${cleanSearchValue}&media=${media}`)
       const data = response.data
       const resultsArray = data.results
+
       if (resultsArray.length === 0) {
         setEmptyResults(true)
       } else {
@@ -48,9 +56,10 @@ function MusicVideosSearch() {
   
     const handleAddToFavourites = (e, id, track, artist) => {
       e.preventDefault()
-      alert("Added to favourites")
-      for (let i = 0; i < musicvideos.length; i++) {
-        if (id === musicvideos[i].trackId) {
+      
+      alert("Item added to favourites")
+      for (let i = 0; i < currentMedia.length; i++) {
+        if (id === currentMedia[i].trackId) {
           alert("Item is already in favourites")
           return
         }
@@ -61,9 +70,8 @@ function MusicVideosSearch() {
         "trackName": track,
         "artistName": artist
       }
-      dispatch(addMusicVideos(data))
+      addMedia(data)
     }
-    
   return (
     <div>
       <div className="search-container">
@@ -92,16 +100,17 @@ function MusicVideosSearch() {
       <div className={`search-results-container p-5 ${!searched ? 'result-box' : ''}`}>
 
         {emptyResults ? <div>Found 0 results</div> : ''}
+
         {searchResults.map((result) => (
           <div
           className='grid grid-cols-3 gap-5 justify-evenly search-results pb-3'
           key={result.trackId}
           >
             <h1 >
-              Video Name: {result.trackName}
+              Episode Name: {result.trackName}
             </h1>
             <p>
-              Artist: {result.artistName}
+              Series: {result.artistName}
             </p>
             <button 
             className='btn btn-xs'
@@ -117,4 +126,4 @@ function MusicVideosSearch() {
   )
 }
 
-export default MusicVideosSearch
+export default MediaSearch

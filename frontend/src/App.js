@@ -2,14 +2,17 @@ import './index.css';
 import Navigation from './components/Navigation';
 import Search from './components/Search';
 import { useSelector } from 'react-redux';
-import MusicFav from './components/favourites/MusicFav'
-import MoviesFav from './components/favourites/MoviesFav'
-import PodcastsFav from './components/favourites/PodcastsFav'
-import MusicVideosFav from './components/favourites/MusicVideosFav'
-import AudioBooksFav from './components/favourites/AudioBooksFav'
-import SoftwareFav from './components/favourites/SoftwareFav'
-import TvShowsFav from './components/favourites/TvShowsFav'
-import EbooksFav from './components/favourites/EbooksFav'
+import MediaFav from './components/MediaFav'
+
+
+import { removeTvShows } from './store/tvshows';
+import { removeMusic } from './store/music';
+import { removeMovies } from './store/movies';
+import { removePodcasts } from './store/podcasts';
+import { removeMusicVideos } from './store/musicvideos';
+import { removeAudioBooks } from './store/audiobooks';
+import { removeSoftware } from './store/software';
+import { removeEbooks } from './store/ebooks';
 
 
 function App() {
@@ -19,14 +22,38 @@ function App() {
       <Navigation/>
 
       {page === 'search' && <Search/>}
-      {page === 'music' && <MusicFav/>}
-      {page === 'movie' && <MoviesFav/>}
-      {page === 'podcast' && <PodcastsFav/>}
-      {page === 'musicVideo' && <MusicVideosFav/>}
-      {page === 'audiobook' && <AudioBooksFav/>}
-      {page === 'tvShow' && <TvShowsFav/>}
-      {page === 'software' && <SoftwareFav/>}
-      {page === 'ebook' && <EbooksFav/>}
+      
+      {page === 'music' && <MediaFav 
+      mediaType="music" 
+      removeMedia={removeMusic} />}
+      
+      {page === 'movie' && <MediaFav 
+      mediaType="movies" 
+      removeMedia={removeMovies} />}
+      
+      {page === 'podcast' && <MediaFav 
+      mediaType="podcasts" 
+      removeMedia={removePodcasts} />}
+      
+      {page === 'musicVideo' && <MediaFav 
+      mediaType="musicvideos" 
+      removeMedia={removeMusicVideos} />}
+      
+      {page === 'audiobook' && <MediaFav 
+      mediaType="audiobooks" 
+      removeMedia={removeAudioBooks} />}
+      
+      {page === 'tvShow' && <MediaFav 
+      mediaType="tvshows" 
+      removeMedia={removeTvShows} />}
+
+      {page === 'software' && <MediaFav 
+      mediaType="software" 
+      removeMedia={removeSoftware} />}
+      
+      {page === 'ebook' && <MediaFav 
+      mediaType="ebooks" 
+      removeMedia={removeEbooks} />}
       
     </div>
   );

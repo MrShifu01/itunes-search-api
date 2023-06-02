@@ -1,17 +1,22 @@
-import "../../index.css"
+import "../index.css"
 import { useSelector, useDispatch } from "react-redux"
-import { removeSoftware } from "../../store/software.js"
 
-function SoftwareFav() {
-    const software = useSelector((state => state.software.softwareArray))
+// Selector function
+function getMediaArray(state, mediaType) {
+  return state[mediaType]?.[`${mediaType}Array`] || [];
+}
+
+function MediaFav({mediaType, removeMedia}) {
+    // Dynamic Selector
+    const currentMedia = useSelector((state) => getMediaArray(state, mediaType));
     const dispatch = useDispatch()
 
     function handleDelete(e, trackId) {
         e.preventDefault()
 
-        for (let i = 0; i < software.length; i++) {
-            if (trackId === software[i].trackId) {
-                dispatch(removeSoftware(i))
+        for (let i = 0; i < currentMedia.length; i++) {
+            if (trackId === currentMedia[i].trackId) {
+                dispatch(removeMedia(i))
             }
         }
     }
@@ -19,11 +24,11 @@ function SoftwareFav() {
   return (
     <div className={`search-results-container p-5`}>
 
-      {software.length === 0 && 
-        <div>Software Favourites is empty...</div>
+      {currentMedia.length === 0 && 
+        <div>TV Show Favourites is empty...</div>
       }
 
-      {software.map((result) => (
+      {currentMedia.map((result) => (
         <div
         className='grid grid-cols-3 gap-5 justify-evenly search-results pb-3'
         key={result.trackId}
@@ -47,4 +52,4 @@ function SoftwareFav() {
   )
 }
 
-export default SoftwareFav
+export default MediaFav
