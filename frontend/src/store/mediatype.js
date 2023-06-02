@@ -17,7 +17,7 @@ const mediaTypeSlice = createSlice({
   reducers: {
     // Reducer functions for adding media to the corresponding arrays
     addTvShows: (state, action) => {
-      state.tvShows.push(action.payload);
+      state.tvshows.push(action.payload);
     },
     addMusic: (state, action) => {
       state.music.push(action.payload);
@@ -29,7 +29,7 @@ const mediaTypeSlice = createSlice({
       state.podcasts.push(action.payload);
     },
     addMusicVideos: (state, action) => {
-      state.musicVideos.push(action.payload);
+      state.musicvideos.push(action.payload);
     },
     addAudioBooks: (state, action) => {
       state.audiobooks.push(action.payload);
@@ -43,7 +43,7 @@ const mediaTypeSlice = createSlice({
 
     // Reducer functions for removing media from the corresponding arrays
     removeTvShows: (state, action) => {
-      state.tvShows.splice(action.payload, 1);
+      state.tvshows.splice(action.payload, 1);
     },
     removeMusic: (state, action) => {
       state.music.splice(action.payload, 1);
@@ -55,7 +55,7 @@ const mediaTypeSlice = createSlice({
       state.podcasts.splice(action.payload, 1);
     },
     removeMusicVideos: (state, action) => {
-      state.musicVideos.splice(action.payload, 1);
+      state.musicvideos.splice(action.payload, 1);
     },
     removeAudioBooks: (state, action) => {
       state.audiobooks.splice(action.payload, 1);
