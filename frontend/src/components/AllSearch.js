@@ -2,31 +2,33 @@ import '../index.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { useState } from 'react'
 import { addResults } from '../store/results'
-
-import { addMovies } from '../store/movies'
-import { addMusic } from '../store/music'
-import { addPodcasts } from '../store/podcasts'
-import { addTvShows } from '../store/tvshows'
-import { addAudioBooks } from '../store/audiobooks'
-import { addEbooks } from '../store/ebooks'
-import { addSoftware } from '../store/software'
-import { addMusicVideos } from '../store/musicvideos'
+import { 
+  addTvShows,
+  addMusic,
+  addAudioBooks,
+  addMusicVideos,
+  addEbooks,
+  addPodcasts,
+  addSoftware,
+  addMovies
+} from '../store/mediatype'
 
 import axios from 'axios'
 
 function MoviesSearch() {
+  // State variables
     const [searchValue, setSearchValue] = useState("")
     const searchResults = useSelector((state) => state.results.results)
     const [emptyResults, setEmptyResults] = useState(false)
     const [searched, setSearched] = useState(false)
-    const movies = useSelector((state) => state.movies.moviesArray)
-    const music = useSelector((state) => state.music.musicArray)
-    const podcasts = useSelector((state) => state.podcasts.podcastsArray)
-    const tvshows = useSelector((state) => state.tvshows.tvshowsArray)
-    const audiobooks = useSelector((state) => state.audiobooks.audiobooksArray)
-    const ebooks = useSelector((state) => state.ebooks.ebooksArray)
-    const software = useSelector((state) => state.software.softwareArray)
-    const musicvideos = useSelector((state) => state.musicvideos.musicvideosArray)
+    const movies = useSelector((state) => state.mediatype.movies)
+    const music = useSelector((state) => state.mediatype.music)
+    const podcasts = useSelector((state) => state.mediatype.podcasts)
+    const tvshows = useSelector((state) => state.mediatype.tvshows)
+    const audiobooks = useSelector((state) => state.mediatype.audiobooks)
+    const ebooks = useSelector((state) => state.mediatype.ebooks)
+    const software = useSelector((state) => state.mediatype.software)
+    const musicvideos = useSelector((state) => state.mediatype.musicvideos)
 
 
     const media = useSelector((state) => state.media.media)
@@ -59,7 +61,7 @@ function MoviesSearch() {
     const handleSearch = (e, searchValue) => {
       e.preventDefault()
       if (!searchValue || searchValue.length < 2) {
-        alert("Please enter a valid search term.");
+        alert("Please enter a valid search term of 2 or more characters");
         return;
       }
       setSearched(true)

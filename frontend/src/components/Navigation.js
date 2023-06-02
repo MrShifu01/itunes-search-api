@@ -4,13 +4,16 @@ import { changePage } from '../store/page';
 import { useState } from 'react';
 
 function Navigation() {
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+// Declaring whether the drop down menu must be open or closed
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const dispatch = useDispatch();
 
   return (
     <>
+        {/* Navbar Container */}
         <div className="navbar-container bg-neutral-focus flex justify-between">
         <div className='navbar-content p-3'>
+            {/* Logo/Home */}
             <div
             className='drop-item cursor-pointer'
             onClick={(e) => {

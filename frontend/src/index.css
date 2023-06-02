@@ -4,10 +4,12 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto&family=Lobster&display=swap');
 
+/* Box sizing */
 *, *::before {
   box-sizing: border-box;
 }
 
+/* Body styles */
 body {
   margin: 0;
   font-family: "Roboto";
@@ -18,10 +20,12 @@ body {
   min-height: 100vh;
 }
 
+/* Navbar container */
 .navbar-container {
   width: 100%;
 }
 
+/* Navbar content */
 .navbar-content {
   width: 80%;
   max-width: 1000px;
@@ -32,14 +36,22 @@ body {
   color: white;
 }
 
+/* Navbar dropdown button on hover */
 .dropbtn:hover {
   opacity: 0.5;
 }
 
+/* Navbar Dropdown */
+.drop-item {
+  cursor: pointer;
+}
+
+/* Navbar dropdown items on hover */
 .drop-item:hover {
   opacity: 0.5;
 }
 
+/* Search container */
 .search-container {
   width: 100%;
   max-width: 1440px;
@@ -49,6 +61,7 @@ body {
   margin-top: 20px;
 }
 
+/* Search input */
 .search-input {
   width: 300px;
   box-shadow: 0 0 10px;
@@ -56,10 +69,12 @@ body {
   outline: none;
 }
 
+/* Search input on focus */
 .search-input:focus {
-  color: #555
+  color: #555;
 }
 
+/* Search results container */
 .search-results-container {
   font-family: "Roboto";
   font-size: .75rem;
@@ -70,19 +85,51 @@ body {
   border-radius: 10px;
   box-shadow: 0 0 10px;
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
+/* Result box */
 .result-box {
   display: none;
 }
 
+/* Title */
 .title {
   font-weight: 900;
 }
 
+/* Tabs */
 .tabs {
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
   margin-top: 2rem;
+}
+
+/* Footer content */
+.footer-content {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 10px;
+}
+
+/* App wrapper */
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Content wrapper */
+.content-wrapper {
+  flex: 1;
+}
+
+/* Footer */
+footer {
+  background-color: #f0f0f0;
+  padding: 10px;
+  text-align: center;
 }

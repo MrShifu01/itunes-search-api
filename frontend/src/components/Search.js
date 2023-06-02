@@ -5,17 +5,19 @@ import { useEffect} from 'react'
 import { resetResults } from '../store/results'
 import MediaSearch from './MediaSearch'
 import AllSearch from './AllSearch'
-
-import { addTvShows } from '../store/tvshows'
-import { addMusic } from '../store/music'
-import { addMovies } from '../store/movies'
-import { addPodcasts } from '../store/podcasts'
-import { addMusicVideos } from '../store/musicvideos'
-import { addAudioBooks } from '../store/audiobooks'
-import { addSoftware } from '../store/software'
-import { addEbooks } from '../store/ebooks'
+import { 
+  addTvShows,
+  addMusic,
+  addAudioBooks,
+  addMusicVideos,
+  addEbooks,
+  addPodcasts,
+  addSoftware,
+  addMovies
+} from '../store/mediatype'
 
 function Search() {
+    // Retrieve the media value from the Redux store
   const media = useSelector((state) => state.media.media)
   const dispatch= useDispatch()
 
@@ -24,7 +26,7 @@ function Search() {
   }, [media])
 
   const handleAddTvShows = (data) => {
-    dispatch(addTvShows(data))
+    dispatch(addTvShows(data));
   }
   const handleAddMusic = (data) => {
     dispatch(addMusic(data))
@@ -36,7 +38,7 @@ function Search() {
     dispatch(addPodcasts(data))
   }
   const handleAddMusicVideos = (data) => {
-    dispatch(addMusicVideos(data))
+    dispatch(addMusicVideos(data));
   }
   const handleAddSoftware = (data) => {
     dispatch(addSoftware(data))
@@ -58,112 +60,103 @@ function Search() {
       <div className="tabs justify-evenly">
         
         {/* ALL */}
-        <a
+        <div
         onClick={(e) => {
           e.preventDefault()
           dispatch(changeMedia('all'))
         }} 
-        href='/' 
         className={`tab tab-bordered ${media === 'all' ? "tab-active" : ""}`}
         >
           All
-        </a>
+        </div>
 
         {/* MUSIC */}
-        <a
+        <div
         onClick={(e) => {
           e.preventDefault()
           dispatch(changeMedia('music'))
         }} 
-        href='/' 
         className={`tab tab-bordered ${media === 'music' ? "tab-active" : ""}`}
         >
           Music
-        </a>
+        </div>
         
         {/* MOVIES */}
-        <a
+        <div
         onClick={(e) => {
           e.preventDefault()
           dispatch(changeMedia('movie'))
         }} 
-        href='/' 
         className={`tab tab-bordered ${media === 'movie' ? "tab-active" : ""}`}
         >
           Movies
-        </a>
+        </div>
         
         {/* PODCASTS */}
-        <a
+        <div
         onClick={(e) => {
           e.preventDefault()
           dispatch(changeMedia('podcast'))
         }} 
-        href='/' 
         className={`tab tab-bordered ${media === 'podcast' ? "tab-active" : ""}`}
         >
           Podcasts
-        </a>
+        </div>
         
         {/* MUSIC VIDEOS */}
-        <a
+        <div
         onClick={(e) => {
           e.preventDefault()
           dispatch(changeMedia('musicVideo'))
         }} 
-        href='/' 
         className={`tab tab-bordered ${media === 'musicVideo' ? "tab-active" : ""}`}
         >
           Music Videos
-        </a>
+        </div>
         
         {/* AUDIO BOOKS */}
-        <a
+        <div
         onClick={(e) => {
           e.preventDefault()
           dispatch(changeMedia('audiobook'))
         }} 
-        href='/' 
         className={`tab tab-bordered ${media === 'audiobook' ? "tab-active" : ""}`}
         >
           Audio Books
-        </a>
+        </div>
         
         {/* TV SHOWS*/}
-        <a
+        <div
         onClick={(e) => {
           e.preventDefault()
           dispatch(changeMedia('tvShow'))
         }} 
-        href='/' 
         className={`tab tab-bordered ${media === 'tvShow' ? "tab-active" : ""}`}
         >
           TV Shows
-        </a>
+        </div>
         
         {/* SOFTWARE */}
-        <a
+        <div
         onClick={(e) => {
           e.preventDefault()
           dispatch(changeMedia('software'))
         }} 
-        href='/' 
         className={`tab tab-bordered ${media === 'software' ? "tab-active" : ""}`}
         >
           Software
-        </a>
+        </div>
         
         {/* EBOOKS */}
-        <a
+        <div
         onClick={(e) => {
           e.preventDefault()
           dispatch(changeMedia('ebook'))
         }} 
-        href='/' 
         className={`tab tab-bordered ${media === 'ebook' ? "tab-active" : ""}`}
         >
           eBooks
-        </a>
+        </div>
 
       </div>
       

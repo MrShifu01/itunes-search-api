@@ -3,10 +3,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useState } from 'react'
 import { addResults } from '../store/results'
 import axios from 'axios'
+import mediatype from '../store/mediatype'
 
 // Selector function
 function getMediaArray(state, mediaType) {
-  return state[mediaType]?.[`${mediaType}Array`] || [];
+  return state['mediatype'][`${mediaType}`] || [];
 }
 
 
@@ -18,6 +19,7 @@ function MediaSearch({mediaType, addMedia}) {
     
     // Dynamic Selector
     const currentMedia = useSelector((state) => getMediaArray(state, mediaType));
+    
     
     const media = useSelector((state) => state.media.media)
     const dispatch = useDispatch()
@@ -47,7 +49,7 @@ function MediaSearch({mediaType, addMedia}) {
     const handleSearch = (e, searchValue) => {
       e.preventDefault()
       if (!searchValue || searchValue.length < 2) {
-        alert("Please enter a valid search term.");
+        alert("Please enter a valid search term of 2 or more characters");
         return;
       }
       setSearched(true)
@@ -57,20 +59,23 @@ function MediaSearch({mediaType, addMedia}) {
     const handleAddToFavourites = (e, id, track, artist) => {
       e.preventDefault()
       
-      alert("Item added to favourites")
+      
       for (let i = 0; i < currentMedia.length; i++) {
         if (id === currentMedia[i].trackId) {
           alert("Item is already in favourites")
           return
         }
       }
+      alert("Item added to favourites")
   
       const data = {
         "trackId": id,
         "trackName": track,
         "artistName": artist
       }
+
       addMedia(data)
+
     }
   return (
     <div>
@@ -97,24 +102,44 @@ function MediaSearch({mediaType, addMedia}) {
           </form>
         </div>
       </div>
-      <div className={`search-results-container p-5 ${!searched ? 'result-box' : ''}`}>
+      <div className={`search-results-container mb-3 p-5 ${!searched ? 'result-box' : ''}`}>
 
         {emptyResults ? <div>Found 0 results</div> : ''}
 
         {searchResults.map((result) => (
           <div
           className='grid grid-cols-3 gap-5 justify-evenly search-results pb-3'
-          key={result.trackId}
+          key={mediaType === 'audiobook' ? result.collectionId : result.trackId}
           >
-            <h1 >
-              Episode Name: {result.trackName}
-            </h1>
-            <p>
-              Series: {result.artistName}
-            </p>
+            {mediaType === "music" && <h1>Song: {result.trackName}</h1>}
+            {mediaType === "movies" && <h1>Movie: {result.trackName}</h1>}
+            {mediaType === "podcasts" && <h1>Podcast: {result.trackName}</h1>}
+            {mediaType === "musicvideos" && <h1>Music Video: {result.trackName}</h1>}
+            {mediaType === "audiobooks" && <h1>Audio Book: {result.collectionName}</h1>}
+            {mediaType === "tvshows" && <h1>Episode: {result.trackName}</h1>}
+            {mediaType === "software" && <h1>Software: {result.trackName}</h1>}
+            {mediaType === "ebooks" && <h1>eBook: {result.trackName}</h1>}
+
+            {mediaType === "music" && <p>Artist: {result.artistName}</p>}
+            {mediaType === "movies" && <p>Director: {result.artistName}</p>}
+            {mediaType === "podcasts" && <p>Host: {result.artistName}</p>}
+            {mediaType === "musicvideos" && <p>Artist: {result.artistName}</p>}
+            {mediaType === "audiobooks" && <p>Author: {result.artistName}</p>}
+            {mediaType === "tvshows" && <p>Series: {result.artistName}</p>}
+            {mediaType === "software" && <p>Developer: {result.artistName}</p>}
+            {mediaType === "ebooks" && <p>Author: {result.artistName}</p>}
+
             <button 
             className='btn btn-xs'
-            onClick={(e) => handleAddToFavourites(e, result.trackId, result.trackName, result.artistName)}
+            onClick={(e) =>
+              handleAddToFavourites(
+                e,
+                result.collectionId,
+                result.trackName,
+                result.artistName
+              )
+            }
+            
             >
               Add to Favourites
             </button>

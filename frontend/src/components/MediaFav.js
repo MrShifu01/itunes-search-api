@@ -3,48 +3,63 @@ import { useSelector, useDispatch } from "react-redux"
 
 // Selector function
 function getMediaArray(state, mediaType) {
-  return state[mediaType]?.[`${mediaType}Array`] || [];
+  return state['mediatype'][`${mediaType}`] || [];
 }
 
 function MediaFav({mediaType, removeMedia}) {
     // Dynamic Selector
     const currentMedia = useSelector((state) => getMediaArray(state, mediaType));
     const dispatch = useDispatch()
+    const test = useSelector((state) => state.mediatype.tvShows)
+    const test2 = useSelector((state) => state.mediatype.music)
+    console.log(currentMedia)
+    console.log(test)
+    console.log(test2)
 
     function handleDelete(e, trackId) {
-        e.preventDefault()
-
-        for (let i = 0; i < currentMedia.length; i++) {
-            if (trackId === currentMedia[i].trackId) {
-                dispatch(removeMedia(i))
-            }
-        }
+      e.preventDefault();
+    
+      const index = currentMedia.findIndex((item) => item.collectionId === trackId);
+      if (index !== -1) {
+        dispatch(removeMedia(index));
+      }
     }
 
   return (
     <div className={`search-results-container p-5`}>
 
       {currentMedia.length === 0 && 
-        <div>TV Show Favourites is empty...</div>
+        <div>{mediaType} favourites is empty...</div>
       }
 
       {currentMedia.map((result) => (
         <div
         className='grid grid-cols-3 gap-5 justify-evenly search-results pb-3'
-        key={result.trackId}
         >
-          <h1>
-            Track Name: {result.trackName}
-          </h1>
-          <p>
-            Artist: {result.artistName}
-          </p>
+            {mediaType === "music" && <h1>Song: {result.trackName}</h1>}
+            {mediaType === "movies" && <h1>Movie: {result.trackName}</h1>}
+            {mediaType === "podcasts" && <h1>Podcast: {result.trackName}</h1>}
+            {mediaType === "musicvideos" && <h1>Music Video: {result.trackName}</h1>}
+            {mediaType === "audiobooks" && <h1>Audio Book: {result.trackName}</h1>}
+            {mediaType === "tvshows" && <h1>Episode: {result.trackName}</h1>}
+            {mediaType === "software" && <h1>Software: {result.trackName}</h1>}
+            {mediaType === "ebooks" && <h1>eBook: {result.trackName}</h1>}
+
+            {mediaType === "music" && <p>Artist: {result.artistName}</p>}
+            {mediaType === "movies" && <p>Director: {result.artistName}</p>}
+            {mediaType === "podcasts" && <p>Host: {result.artistName}</p>}
+            {mediaType === "musicvideos" && <p>Artist: {result.artistName}</p>}
+            {mediaType === "audiobooks" && <p>Author: {result.artistName}</p>}
+            {mediaType === "tvshows" && <p>Series: {result.artistName}</p>}
+            {mediaType === "software" && <p>Developer: {result.artistName}</p>}
+            {mediaType === "ebooks" && <p>Author: {result.artistName}</p>}
+
           <button 
-                  className="btn btn-xs"
-                  onClick={(e) => handleDelete(e, result.trackId)}
-                  >
-                      Remove
-                  </button>
+              className="btn btn-xs"
+              onClick={(e) => handleDelete(e, result.collectionId)}
+              >
+                  Remove
+              </button>
         </div>
       )
       )}
