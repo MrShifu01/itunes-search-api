@@ -18,33 +18,18 @@ body {
   min-height: 100vh;
 }
 
-.navbar__container {
+.navbar-container {
   width: 100%;
-  background-color: white;
 }
 
-.navbar__content {
+.navbar-content {
   width: 80%;
   max-width: 1000px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   position: relative;
-}
-
-.sub-open {
-  display: block;
-  position: absolute;
-  top: 100%;
-  left: 0;
-}
-
-.sub-closed {
-  display: hidden;
-}
-
-.sub-list:hover {
-  opacity: .5;
+  color: white;
 }
 
 .search-container {

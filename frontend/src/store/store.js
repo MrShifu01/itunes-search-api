@@ -9,6 +9,7 @@ import audiobooksReducer from './audiobooks'
 import tvshowsReducer from './tvshows'
 import softwareReducer from './software'
 import mediaReducer from './media'
+import pageReducer from './page'
 
 export default configureStore ({
     reducer: {
@@ -21,6 +22,7 @@ export default configureStore ({
         ebooks: ebooksReducer,
         tvshows: tvshowsReducer,
         software: softwareReducer,
+        page: pageReducer,
         media: mediaReducer
     }
 })

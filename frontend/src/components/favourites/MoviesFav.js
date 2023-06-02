@@ -17,21 +17,27 @@ function MoviesFav() {
     }
 
   return (
-    <div>
-        {movies.map((track) => (
-            <div key={track.trackId}>
-                <h1>{track.trackId}</h1>
-                <p>{track.trackName}</p>
-                <p>{track.artistName}</p>
-                <button 
-                className="btn"
-                onClick={(e) => handleDelete(e, track.trackId)}
-                >
-                    Remove
-                </button>
-
-            </div>
-        ))}
+    <div className={`search-results-container p-5 ${movies.length > 0 ? '' : 'result-box'}`}>
+      {movies.map((result) => (
+        <div
+        className='grid grid-cols-3 gap-5 justify-evenly search-results pb-3'
+        key={result.trackId}
+        >
+          <h1>
+            Track Name: {result.trackName}
+          </h1>
+          <p>
+            Artist: {result.artistName}
+          </p>
+          <button 
+                  className="btn btn-xs"
+                  onClick={(e) => handleDelete(e, result.trackId)}
+                  >
+                      Remove
+                  </button>
+        </div>
+      )
+      )}
     </div>
   )
 }

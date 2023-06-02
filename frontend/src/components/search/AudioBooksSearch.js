@@ -85,7 +85,7 @@ function AudioBooksSearch() {
         {searchResults.map((result) => (
           <div
           className='grid grid-cols-3 gap-5 justify-evenly search-results pb-3'
-          key={result.trackId}
+          key={result.collectionId}
           >
             <h1 >
               Book Name: {result.collectionName}
@@ -95,7 +95,7 @@ function AudioBooksSearch() {
             </p>
             <button 
             className='btn btn-xs'
-            onClick={(e) => handleAddToFavourites(e, result.trackId, result.collectionName, result.artistName)}
+            onClick={(e) => handleAddToFavourites(e, result.collectionId, result.collectionName, result.artistName)}
             >
               Add to Favourites
             </button>

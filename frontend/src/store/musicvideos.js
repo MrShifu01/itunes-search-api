@@ -12,7 +12,7 @@ const musicvideosSlice = createSlice({
             state.musicvideosArray.push(action.payload)
         },
 
-        removeMusicvideos: (state, action) => {
+        removeMusicVideos: (state, action) => {
             state.musicvideosArray.splice(action.payload, 1) 
         },
 

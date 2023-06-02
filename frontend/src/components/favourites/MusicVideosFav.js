@@ -1,8 +1,44 @@
-import React from 'react'
+import "../../index.css"
+import { useSelector, useDispatch } from "react-redux"
+import { removeMusicVideos } from "../../store/musicvideos.js"
 
 function MusicVideosFav() {
+    const musicvideos = useSelector((state => state.musicvideos.musicvideosArray))
+    const dispatch = useDispatch()
+
+    function handleDelete(e, trackId) {
+        e.preventDefault()
+
+        for (let i = 0; i < musicvideos.length; i++) {
+            if (trackId === musicvideos[i].trackId) {
+                dispatch(removeMusicVideos(i))
+            }
+        }
+    }
+
   return (
-    <div>MusicVideosFav</div>
+    <div className={`search-results-container p-5 ${musicvideos.length > 0 ? '' : 'result-box'}`}>
+      {musicvideos.map((result) => (
+        <div
+        className='grid grid-cols-3 gap-5 justify-evenly search-results pb-3'
+        key={result.trackId}
+        >
+          <h1>
+            Track Name: {result.trackName}
+          </h1>
+          <p>
+            Artist: {result.artistName}
+          </p>
+          <button 
+                  className="btn btn-xs"
+                  onClick={(e) => handleDelete(e, result.trackId)}
+                  >
+                      Remove
+                  </button>
+        </div>
+      )
+      )}
+    </div>
   )
 }
 
