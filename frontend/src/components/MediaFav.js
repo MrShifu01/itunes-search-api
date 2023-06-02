@@ -10,11 +10,6 @@ function MediaFav({mediaType, removeMedia}) {
     // Dynamic Selector
     const currentMedia = useSelector((state) => getMediaArray(state, mediaType));
     const dispatch = useDispatch()
-    const test = useSelector((state) => state.mediatype.tvShows)
-    const test2 = useSelector((state) => state.mediatype.music)
-    console.log(currentMedia)
-    console.log(test)
-    console.log(test2)
 
     function handleDelete(e, trackId) {
       e.preventDefault();
@@ -35,6 +30,7 @@ function MediaFav({mediaType, removeMedia}) {
       {currentMedia.map((result) => (
         <div
         className='grid grid-cols-3 gap-5 justify-evenly search-results pb-3'
+        key={result.trackId}
         >
             {mediaType === "music" && <h1>Song: {result.trackName}</h1>}
             {mediaType === "movies" && <h1>Movie: {result.trackName}</h1>}

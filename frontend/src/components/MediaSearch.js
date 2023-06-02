@@ -109,7 +109,7 @@ function MediaSearch({mediaType, addMedia}) {
         {searchResults.map((result) => (
           <div
           className='grid grid-cols-3 gap-5 justify-evenly search-results pb-3'
-          key={mediaType === 'audiobook' ? result.collectionId : result.trackId}
+          key={mediaType === 'audiobooks' ? result.collectionId : result.trackId}
           >
             {mediaType === "music" && <h1>Song: {result.trackName}</h1>}
             {mediaType === "movies" && <h1>Movie: {result.trackName}</h1>}
@@ -134,8 +134,8 @@ function MediaSearch({mediaType, addMedia}) {
             onClick={(e) =>
               handleAddToFavourites(
                 e,
-                result.collectionId,
-                result.trackName,
+                mediaType === "audiobooks" ? result.collectionId : result.trackId,
+                mediaType === "audiobooks" ? result.collectionName : result.trackName,
                 result.artistName
               )
             }
