@@ -7,6 +7,8 @@ import axios from 'axios'
 
 function EbooksSearch() {
     const [searchValue, setSearchValue] = useState("")
+    const [emptyResults, setEmptyResults] = useState(false)
+    const [searched, setSearched] = useState(false)
     const searchResults = useSelector((state) => state.results.results)
     const ebooks = useSelector((state) => state.ebooks.ebooksArray)
     const media = useSelector((state) => state.media.media)
@@ -25,17 +27,22 @@ function EbooksSearch() {
       const response = await axios.get(`/api/?term=${cleanSearchValue}&media=${media}`)
       const data = response.data
       const resultsArray = data.results
+      if (resultsArray.length === 0) {
+        setEmptyResults(true)
+      } else {
+        setEmptyResults(false)
+      }
   
-      const nameArray = resultsArray.map((name) => {
-        return name.collectionName
-      })
-      console.log(nameArray)
-      console.log(resultsArray)
       dispatch(addResults(resultsArray))
     }
   
     const handleSearch = (e, searchValue) => {
       e.preventDefault()
+      if (!searchValue || searchValue.length < 2) {
+        alert("Please enter a valid search term.");
+        return;
+      }
+      setSearched(true)
       getResults(searchValue)
     }
   
@@ -68,7 +75,7 @@ function EbooksSearch() {
           
             <input
             type="text"
-            placeholder="Search Content..." className="input input-bordered w-full max-w-xs"
+            placeholder="Search Content..." className="search-input bg-base-200 rounded-lg p-3"
             onChange={(e) => setSearchValue(e.target.value)}
             value={searchValue}
             />
@@ -81,7 +88,9 @@ function EbooksSearch() {
           </form>
         </div>
       </div>
-      <div className={`search-results-container p-5 ${searchResults.length > 0 ? '' : 'result-box'}`}>
+      <div className={`search-results-container p-5 ${!searched ? 'result-box' : ''}`}>
+
+        {emptyResults ? <div>Found 0 results</div> : ''}
         {searchResults.map((result) => (
           <div
           className='grid grid-cols-3 gap-5 justify-evenly search-results pb-3'

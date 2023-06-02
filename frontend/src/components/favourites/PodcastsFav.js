@@ -17,7 +17,12 @@ function PodcastsFav() {
     }
 
   return (
-    <div className={`search-results-container p-5 ${podcasts.length > 0 ? '' : 'result-box'}`}>
+    <div className={`search-results-container p-5`}>
+
+      {podcasts.length === 0 && 
+        <div>Podcast Favourites is empty...</div>
+      }
+
       {podcasts.map((result) => (
         <div
         className='grid grid-cols-3 gap-5 justify-evenly search-results pb-3'

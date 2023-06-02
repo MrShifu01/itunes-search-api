@@ -1,76 +1,110 @@
 import '../index.css'
 import { useDispatch } from 'react-redux'
 import { changePage } from '../store/page';
+import { useState } from 'react';
 
 function Navigation() {
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const dispatch = useDispatch();
 
   return (
     <>
         <div className="navbar-container bg-neutral-focus flex justify-between">
         <div className='navbar-content p-3'>
-            <a href="/">favour-A-tism</a>
+            <div
+            className='drop-item cursor-pointer'
+            onClick={(e) => {
+                e.preventDefault()
+                dispatch(changePage('search'))}}
+            >favour-A-tism</div>
             <div className="dropdown">
                 
-                <button className="dropbtn">
+                <button 
+                className="dropbtn"
+                onClick={() => setIsDropdownOpen(prev => !prev)}
+                >
                 <i className='bx bx-chevron-down px-2'></i>Favourites
                 </button>
-                <div className="dropdown-content w-40 rounded-md p-3 bg-neutral-focus flex flex-col">
+                <div className={`dropdown-content w-40 rounded-md p-3 bg-neutral-focus flex flex-col ${isDropdownOpen ? '' : 'hidden'}`}>
                 
-                <a 
+                <a
+                className='drop-item' 
                 href="/"
                 onClick={(e) => {
                     e.preventDefault()
-                    dispatch(changePage('music'))}}
+                    dispatch(changePage('music'))
+                    setIsDropdownOpen(false)
+                }}
                 >Music</a>
                 
                 <a 
+                className='drop-item'
                 href="/"
                 onClick={(e) => {
                     e.preventDefault()
-                    dispatch(changePage('movie'))}}
+                    dispatch(changePage('movie'))
+                    setIsDropdownOpen(false)
+                }}
                 >Movies</a>
                 
                 <a 
+                className='drop-item'
                 href="/"
                 onClick={(e) => {
                     e.preventDefault()
-                    dispatch(changePage('podcast'))}}
+                    dispatch(changePage('podcast'))
+                    setIsDropdownOpen(false)
+                }}
                 >Podcasts</a>
                 
                 <a 
+                className='drop-item'
                 href="/"
                 onClick={(e) => {
                     e.preventDefault()
-                    dispatch(changePage('musicVideo'))}}
+                    dispatch(changePage('musicVideo'))
+                    setIsDropdownOpen(false)
+                }}
                 >Music Videos</a>
                 
                 <a 
+                className='drop-item'
                 href="/"
                 onClick={(e) => {
                     e.preventDefault()
-                    dispatch(changePage('audiobook'))}}
+                    dispatch(changePage('audiobook'))
+                    setIsDropdownOpen(false)
+                }}
                 >Audiobooks</a>
                 
                 <a 
+                className='drop-item'
                 href="/"
                 onClick={(e) => {
                     e.preventDefault()
-                    dispatch(changePage('tvShow'))}}
+                    dispatch(changePage('tvShow'))
+                    setIsDropdownOpen(false)
+                }}
                 >TV Shows</a>
                 
                 <a 
+                className='drop-item'
                 href="/"
                 onClick={(e) => {
                     e.preventDefault()
-                    dispatch(changePage('software'))}}
+                    dispatch(changePage('software'))
+                    setIsDropdownOpen(false)
+                }}
                 >Software</a>
                 
                 <a 
+                className='drop-item'
                 href="/"
                 onClick={(e) => {
                     e.preventDefault()
-                    dispatch(changePage('ebook'))}}
+                    dispatch(changePage('ebook'))
+                    setIsDropdownOpen(false)
+                }}
                 >eBooks</a>
 
                 </div>

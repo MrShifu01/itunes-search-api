@@ -17,7 +17,12 @@ function SoftwareFav() {
     }
 
   return (
-    <div className={`search-results-container p-5 ${software.length > 0 ? '' : 'result-box'}`}>
+    <div className={`search-results-container p-5`}>
+
+      {software.length === 0 && 
+        <div>Software Favourites is empty...</div>
+      }
+
       {software.map((result) => (
         <div
         className='grid grid-cols-3 gap-5 justify-evenly search-results pb-3'

@@ -17,7 +17,12 @@ function MoviesFav() {
     }
 
   return (
-    <div className={`search-results-container p-5 ${movies.length > 0 ? '' : 'result-box'}`}>
+    <div className={`search-results-container p-5`}>
+
+      {movies.length === 0 && 
+        <div>Movie Favourites is empty...</div>
+      }
+
       {movies.map((result) => (
         <div
         className='grid grid-cols-3 gap-5 justify-evenly search-results pb-3'
