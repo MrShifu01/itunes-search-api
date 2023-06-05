@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navigation renders correctly 1`] = `
+<div
+  className="navbar-container bg-neutral-focus flex justify-between"
+>
+  <div
+    className="navbar-content p-3"
+  >
+    <div
+      className="drop-item cursor-pointer"
+      onClick={[Function]}
+    >
+      favour-A-tism
+    </div>
+    <div
+      className="dropdown"
+    >
+      <button
+        className="dropbtn"
+        onClick={[Function]}
+      >
+        <i
+          className="bx bx-chevron-down px-2"
+        />
+        Favourites
+      </button>
+      <div
+        className="dropdown-content w-40 rounded-md p-3 bg-neutral-focus flex flex-col hidden"
+      >
+        <a
+          className="drop-item"
+          href="/"
+          onClick={[Function]}
+        >
+          Music
+        </a>
+        <a
+          className="drop-item"
+          href="/"
+          onClick={[Function]}
+        >
+          Movies
+        </a>
+        <a
+          className="drop-item"
+          href="/"
+          onClick={[Function]}
+        >
+          Podcasts
+        </a>
+        <a
+          className="drop-item"
+          href="/"
+          onClick={[Function]}
+        >
+          Music Videos
+        </a>
+        <a
+          className="drop-item"
+          href="/"
+          onClick={[Function]}
+        >
+          Audiobooks
+        </a>
+        <a
+          className="drop-item"
+          href="/"
+          onClick={[Function]}
+        >
+          TV Shows
+        </a>
+        <a
+          className="drop-item"
+          href="/"
+          onClick={[Function]}
+        >
+          Software
+        </a>
+        <a
+          className="drop-item"
+          href="/"
+          onClick={[Function]}
+        >
+          eBooks
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;

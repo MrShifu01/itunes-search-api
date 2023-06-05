@@ -1,11 +1,17 @@
 // Import the Express framework
-import express from 'express';
+const express = require('express')
 
 // Import the router module from './router.js'
-import router from './router.js';
+const { router } = require('./router.js');
+
+// Import Helmet
+const helmet = require('helmet')
 
 // Create an instance of the Express application
 const app = express();
+
+// Use helmet
+app.use(helmet())
 
 // Set the port to either the value specified in the environment variable "PORT" or 8000
 const PORT = process.env.PORT || 8000;

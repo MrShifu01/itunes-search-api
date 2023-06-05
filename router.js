@@ -1,5 +1,5 @@
-import express from 'express';
-import axios from 'axios';
+const express = require('express')
+const axios = require('axios')
 
 // Create an instance of an Express Router
 const router = express.Router();
@@ -36,4 +36,7 @@ router.get('/', async (req, res) => {
 });
 
 // Export the router module
-export default router;
+module.exports = {
+  router: router,
+  getResults: getResults
+};

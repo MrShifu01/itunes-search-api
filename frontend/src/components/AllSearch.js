@@ -15,7 +15,7 @@ import {
 
 import axios from 'axios'
 
-function MoviesSearch() {
+function AllSearch() {
   // State variables
     const [searchValue, setSearchValue] = useState("")
     const searchResults = useSelector((state) => state.results.results)
@@ -58,6 +58,7 @@ function MoviesSearch() {
       dispatch(addResults(resultsArray))
     }
   
+    // Function to handle the search data from user
     const handleSearch = (e, searchValue) => {
       e.preventDefault()
       if (!searchValue || searchValue.length < 2) {
@@ -68,9 +69,11 @@ function MoviesSearch() {
       getResults(searchValue)
     }
   
+    // handle the adding of an item to favourites
     const handleAddToFavourites = (e, kind, id, track, artist) => {
       e.preventDefault()
 
+      // making sure the right media content gets saved to the correct favourites list
       let data
       switch (kind) {
         
@@ -250,7 +253,8 @@ function MoviesSearch() {
         </div>
       </div>
       <div className={`search-results-container p-5 ${!searched ? 'result-box' : ''}`}>
-
+        
+        {/* If results array from apple is empty, tell user that 0 results were found */}
         {emptyResults ? <div>Found 0 results</div> : ''}
         {searchResults.map((result) => (
           <div
@@ -289,4 +293,4 @@ function MoviesSearch() {
   )
 }
 
-export default MoviesSearch
+export default AllSearch
