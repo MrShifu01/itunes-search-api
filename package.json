@@ -4,7 +4,7 @@
   "description": "search app for itunes store",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest ./test/router.test.js --watch",
     "start": "nodemon server.js"
   },
   "author": "Christian Stander",
