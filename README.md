@@ -79,7 +79,7 @@ The iTunes Search App can be deployed to various hosting platforms or services. 
 
 ## Links
 - [Live Demo](https://your-app-url.com)
-- [GitHub Repository](https://github.com/your-username/itunes-search-app)
+- [GitHub Repository](https://github.com/MrShifu01/itunes-search-api)
 
 ```
 
